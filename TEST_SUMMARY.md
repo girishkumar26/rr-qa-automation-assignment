@@ -74,7 +74,7 @@ To validate the functionality, reliability, and stability of the TMDB Discover d
 | Technique | Used For                                     | Example                              |
 |------------|----------------------------------------------|--------------------------------------|
 | **Equivalence Partitioning** | Year / Rating filters                        | 2020–2024 valid range                |
-| **Boundary Value Analysis** | Ratings (1★–5★)                              | 1, 5                                 |
+| **Boundary Value Analysis** | Ratings (1★–5★) and year                              | 1, 5                                 |
 | **Decision Table Testing** | Filter combinations                          | Category × Type × Genre x search     |
 | **Error Guessing** | Refresh `/popular`                           | Expect routing error                 |
 | **State Transition Testing** | Filter → Clear → Reapply and page navigation | Verify reset and navigation behavior |
