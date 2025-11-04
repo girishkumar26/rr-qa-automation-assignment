@@ -56,6 +56,13 @@ focusing on **filtering**, **pagination**, and **API behavior**, ensuring the pl
 
 ---
 
+## CI/CD Integration Readiness
+The framework is CI-ready and runs in headless Chrome mode (--headless=new) for seamless Jenkins execution. It generates all key artifacts — HTML reports, screenshots, and logs — under reports/ and logs/. The Jenkins pipeline executes tests via Maven, and a post-build step archives the ExtentReport and screenshots. The report is finalized with extent.flush() during teardown to ensure all results are captured before build completion
+
+> ✅ Framework fully CI-ready
+
+---
+
 ## Running the Tests
 
 ### Prerequisites
