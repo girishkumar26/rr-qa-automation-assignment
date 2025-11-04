@@ -34,7 +34,6 @@ focusing on **filtering**, **pagination**, and **API behavior**, ensuring the pl
 
 ---
 
-
 ## Framework Overview
 
 ### Library & Purpose
@@ -46,6 +45,14 @@ focusing on **filtering**, **pagination**, and **API behavior**, ensuring the pl
 - WebDriverManager 5.9.2 - Automatic browser driver setup
 - Commons IO 2.15.1 - File and screenshot handling
 - Maven - Build and dependency management
+
+### Reports & Logs
+
+- Extent HTML Report: [`reports/ExtentReport.html`](./reports/ExtentReport.html)  
+- Screenshots: [`reports/screenshots/`](./reports/screenshots/)  
+- Execution Logs: [`logs/automation.log`](./logs/automation.log)  
+
+> On test failure, screenshots are automatically captured and attached to the Extent HTML Report.
 
 ---
 
