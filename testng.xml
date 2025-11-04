@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="RR QA Automation Suite">
+    <test name="UI Tests">
+        <classes>
+            <class name="tests.FilterTests"/>
+            <class name="tests.PaginationTests"/>
+            <class name="tests.NegativeTests"/>
+        </classes>
+    </test>
+</suite>
