@@ -8,7 +8,7 @@ import pages.HomePage;
 public class FilterTests extends BaseTest {
 
     @Test(description = "Test filtering by category, type, genre, year and rating")
-    public void testFilters() {
+    public void testFilters() throws InterruptedException {
         test = extent.createTest("Filter Test");
         HomePage home = new HomePage(driver);
 
@@ -31,6 +31,9 @@ public class FilterTests extends BaseTest {
 
         home.selectStarRating("4");
         softAssert.assertTrue(home.isRatingApplied(4), "Rating filter not applied correctly");
+
+        home.enterMovieNameInSearch("WAR");
+        softAssert.assertTrue(home.isMoviePostersContains("WAR"), "Movie search filter not applied correctly");
 
         int filteredCount = home.getMovieCount();
         logger.info("Initial count: " + initialCount + ", Filtered count: " + filteredCount);

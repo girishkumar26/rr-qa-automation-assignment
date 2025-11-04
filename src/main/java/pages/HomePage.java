@@ -16,6 +16,7 @@ public class HomePage {
     // Locators
     private By pageNotFound = By.xpath("//title[text()='page not found']");
     private By moviePosters = By.xpath("//img[@alt='Movie Posters']");
+    private By moviePostersName = By.xpath("//img[@alt='Movie Poster']/following-sibling::p[1]");
     private String categoryXpath = "//li[a[text()='%s']]";
     private By typeDropdown = By.xpath("//div[contains(@class, 'css-1uccc91-singleValue')]");
     private By genreDropdown = By.xpath("(//div[@class=' css-1hwfws3'])[2]");
@@ -23,6 +24,7 @@ public class HomePage {
     private By yearInput = By.xpath("//input[@id='react-select-5-input']");
     private By pagination = By.xpath("//*[@id=\"react-paginate\"]/ul/li[9]/a");
     private By loadingSpinner = By.cssSelector(".loading");
+    private By searchBox = By.xpath("//input[@name='search']");
     private String ratingStar = "//ul[@class='rc-rate']//div[@role='radio' and @aria-posinset='%s']";
 
 
@@ -110,6 +112,26 @@ public class HomePage {
         } catch (NoSuchElementException e) {
             return false;
         }
+    }
+
+    public void enterMovieNameInSearch(String movieName) throws InterruptedException {
+        WebElement search = driver.findElement(searchBox);
+        search.click();
+        search.sendKeys(movieName);
+        search.sendKeys(Keys.ENTER);
+        Thread.sleep(5000);
+        waitForResults();
+    }
+
+    public boolean isMoviePostersContains(String movieName) {
+        List<WebElement> moviePostersElements = driver.findElements(moviePostersName);
+        for (WebElement moviePostersElement : moviePostersElements) {
+            if (!moviePostersElement.getText().toLowerCase().contains(movieName.toLowerCase())) {
+                System.out.println(moviePostersElement.getText());
+                return false;
+            }
+        }
+        return true;
     }
 
 }

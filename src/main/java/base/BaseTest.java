@@ -59,8 +59,7 @@ public class BaseTest {
                     String screenshotPath = ScreenshotHelper.captureScreenshot(driver, testName);
 
                     if (screenshotPath != null) {
-                        test.fail("Test Failed. Screenshot attached.",
-                                MediaEntityBuilder.createScreenCaptureFromPath(screenshotPath).build());
+                        test.fail("Test Failed. Screenshot attached.").addScreenCaptureFromPath(screenshotPath);
                     } else {
                         test.fail("Test Failed but screenshot could not be captured.");
                     }
