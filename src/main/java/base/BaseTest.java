@@ -9,6 +9,8 @@ import utils.DriverFactory;
 import utils.ExtentManager;
 import utils.LoggerHelper;
 import utils.ScreenshotHelper;
+
+import java.io.File;
 import java.lang.reflect.Method;
 
 public class BaseTest {
@@ -58,7 +60,8 @@ public class BaseTest {
                     String screenshotPath = ScreenshotHelper.captureScreenshot(driver, testName);
 
                     if (screenshotPath != null) {
-                        test.fail("Test Failed. Screenshot attached.").addScreenCaptureFromPath(screenshotPath);
+                        test.fail("Test Failed. Screenshot attached.").
+                                addScreenCaptureFromPath(new File(screenshotPath).getAbsolutePath());
                     } else {
                         test.fail("Test Failed but screenshot could not be captured.");
                     }

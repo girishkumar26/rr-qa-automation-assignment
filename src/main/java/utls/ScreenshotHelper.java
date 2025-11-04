@@ -14,13 +14,16 @@ public class ScreenshotHelper {
 
     public static String captureScreenshot(WebDriver driver, String testName) {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String screenshotPath = "reports/screenshots/" + testName + "_" + timestamp + ".png";
+        String screenshotDir = "reports/screenshots/";
+        new File(screenshotDir).mkdirs();
+
+        String screenshotPath = screenshotDir + testName + "_" + timestamp + ".png";
 
         try {
             File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File dest = new File(screenshotPath);
             FileUtils.copyFile(src, dest);
-            return screenshotPath;
+            return dest.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
             return null;
