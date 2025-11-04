@@ -1,8 +1,8 @@
 package tests;
 
 import base.BaseTest;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import pages.HomePage;
 
 public class FilterTests extends BaseTest {
@@ -12,18 +12,33 @@ public class FilterTests extends BaseTest {
         test = extent.createTest("Filter Test");
         HomePage home = new HomePage(driver);
 
+        SoftAssert softAssert = new SoftAssert();
+
         int initialCount = home.getMovieCount();
 
+        // Apply filters one by one and assert after each
         home.selectCategory("Popular");
+        softAssert.assertTrue(home.isFilterApplied("Popular"), "Category filter not applied correctly");
+
         home.selectType("TV Shows");
+        softAssert.assertTrue(home.isFilterApplied("TV Shows"), "Type filter not applied correctly");
+
         home.selectGenre("Comedy");
+        softAssert.assertTrue(home.isFilterApplied("Comedy"), "Genre filter not applied correctly");
+
         home.enterYear("2022");
+        softAssert.assertTrue(home.isFilterApplied("2022"), "Year filter not applied correctly");
+
         home.selectStarRating("4");
+        softAssert.assertTrue(home.isRatingApplied(4), "Rating filter not applied correctly");
 
         int filteredCount = home.getMovieCount();
         logger.info("Initial count: " + initialCount + ", Filtered count: " + filteredCount);
-        Assert.assertTrue(filteredCount <= initialCount, "Filtered count should be less or equal to initial count");
+        softAssert.assertTrue(filteredCount <= initialCount, "Filtered count should be less or equal to initial count");
 
-        test.pass("Filters applied and verified successfully.");
+        // Collate all soft assertions
+        softAssert.assertAll();
+
+        test.pass("Filters applied and verified successfully with soft assertions.");
     }
 }

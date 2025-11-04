@@ -74,13 +74,15 @@ public class HomePage {
         WebElement textBox = dropdown.findElement(genreTextBox);
 //        textBox.click();
         textBox.sendKeys(genre);
+        textBox.sendKeys(Keys.ENTER);
         waitForResults();
     }
 
     public void enterYear(String year) {
         WebElement input = driver.findElement(yearInput);
-//        input.clear();
+        input.clear();
         input.sendKeys(year);
+        input.sendKeys(Keys.ENTER);
         waitForResults();
     }
 
@@ -94,4 +96,20 @@ public class HomePage {
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(By.tagName("body"))).sendKeys(Keys.END).perform();
     }
+
+    public boolean isFilterApplied(String filterText) {
+        return driver.getPageSource().contains(filterText);
+    }
+
+    public boolean isRatingApplied(int stars) {
+        try {
+            WebElement selectedStar = driver.findElement(
+                    By.xpath("//ul[@class='rc-rate']//div[@role='radio' and @aria-posinset='" + stars + "' and @aria-checked='true']")
+            );
+            return selectedStar.isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
 }
