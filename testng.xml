@@ -5,6 +5,7 @@
             <class name="tests.FilterTests"/>
             <class name="tests.PaginationTests"/>
             <class name="tests.NegativeTests"/>
+            <class name="tests.ApiTests"/>
         </classes>
     </test>
 </suite>

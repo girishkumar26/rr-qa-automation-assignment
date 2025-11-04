@@ -134,4 +134,8 @@ public class HomePage {
         return true;
     }
 
+    public List<WebElement> getMovieNames() {
+        return driver.findElements(moviePostersName);
+    }
+
 }
