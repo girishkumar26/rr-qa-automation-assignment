@@ -18,11 +18,10 @@ public class FilterTests extends BaseTest {
         home.selectType("TV Shows");
         home.selectGenre("Comedy");
         home.enterYear("2022");
+        home.selectStarRating("4");
 
         int filteredCount = home.getMovieCount();
-
         logger.info("Initial count: " + initialCount + ", Filtered count: " + filteredCount);
-
         Assert.assertTrue(filteredCount <= initialCount, "Filtered count should be less or equal to initial count");
 
         test.pass("Filters applied and verified successfully.");

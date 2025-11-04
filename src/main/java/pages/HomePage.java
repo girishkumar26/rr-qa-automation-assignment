@@ -23,6 +23,8 @@ public class HomePage {
     private By yearInput = By.xpath("//input[@id='react-select-5-input']");
     private By pagination = By.xpath("//*[@id=\"react-paginate\"]/ul/li[9]/a");
     private By loadingSpinner = By.cssSelector(".loading");
+    private String ratingStar = "//ul[@class='rc-rate']//div[@role='radio' and @aria-posinset='%s']";
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -48,6 +50,14 @@ public class HomePage {
         categoriesBtn.click();
         waitForResults();
     }
+
+    public void selectStarRating(String rating) {
+        String ratingsXpath = String.format(ratingStar, rating);
+        WebElement selectRating = driver.findElement(By.xpath(ratingsXpath));
+        selectRating.click();
+        waitForResults();
+    }
+
 
     public void selectType(String type) {
         WebElement dropdown = driver.findElement(typeDropdown);
